@@ -149,8 +149,7 @@ class HBNBCommand(cmd.Cmd):
                     except ValueError:
                         continue
             # Set attribute
-            setattr(new_instance, key, value)  
-
+            setattr(new_instance, key, value)
         print(new_instance.id)
         storage.save()
 

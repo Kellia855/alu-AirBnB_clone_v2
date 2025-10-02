@@ -34,9 +34,11 @@ class TestConsoleCreate(unittest.TestCase):
     def test_create_place_with_multiple_params(self):
         """Test creating a Place with multiple parameters"""
         console = HBNBCommand()
-        cmd = ('create Place city_id="0001" user_id="0001" name="My_little_house" '
-               'number_rooms=4 number_bathrooms=2 max_guest=10 price_by_night=300 '
-               'latitude=37.773972 longitude=-122.431297')
+        cmd = (
+            'create Place city_id="0001" user_id="0001" name="My_little_house"'
+            'number_rooms=4 number_bathrooms=2 max_guest=10 price_by_night=300'
+            'latitude=37.773972 longitude=-122.431297'
+            )
         with patch('sys.stdout', new=StringIO()) as f:
             console.onecmd(cmd)
             new_id = f.getvalue().strip()
@@ -72,4 +74,3 @@ class TestConsoleCreate(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

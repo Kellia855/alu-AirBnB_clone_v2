@@ -11,9 +11,10 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 
+
 class DBStorage:
     """ Interacts with the MySQL database """
-    
+
     __engine = None
     __session = None
 
@@ -24,8 +25,10 @@ class DBStorage:
         host = os.getenv('HBNB_MYSQL_HOST', 'localhost')
         db = os.getenv('HBNB_MYSQL_DB', 'hbnb_dev_db')
 
-        self.__engine = create_engine(f'mysql+mysqldb://{user}:{pwd}@{host}/{db}',
-                                      pool_pre_ping=True)
+        self.__engine = create_engine(
+                                f'mysql+mysqldb://{user}:{pwd}@{host}/{db}',
+                                pool_pre_ping=True
+                                     )
 
         # Drop all tables if in test environment
         if os.getenv('HBNB_ENV') == 'test':
@@ -63,11 +66,12 @@ class DBStorage:
     def reload(self):
         """ Reloads data from the database """
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(
+                                bind=self.__engine, expire_on_commit=False
+                                      )
         Session = scoped_session(session_factory)
         self.__session = Session()
 
     def close(self):
         """ Close the session """
         self.__session.close()
-
