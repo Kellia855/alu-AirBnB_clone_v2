@@ -8,8 +8,7 @@ class TestFileStorage(unittest.TestCase):
 
     def setUp(self):
         """Reset storage and remove file.json before each test"""
-        from models import storage
-        storage._FileStorage__objects = {}
+        storage._FileStorage__objects.clear()
         try:
             os.remove(storage._FileStorage__file_path)
         except FileNotFoundError:
@@ -17,8 +16,7 @@ class TestFileStorage(unittest.TestCase):
 
     def tearDown(self):
         """Remove storage file after each test"""
-        from models import storage
-        storage._FileStorage__objects = {}
+        storage._FileStorage__objects.clear()
         try:
             os.remove(storage._FileStorage__file_path)
         except FileNotFoundError:
